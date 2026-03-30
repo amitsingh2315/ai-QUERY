@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Global Styles ──────────────────────────────────────── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e1b4b 100%);
+  min-height: 100vh;
+  color: #e2e8f0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar Styling ──────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+}
+
+/* ─── Glass Card Effect ──────────────────────────────────── */
+
+@layer components {
+  .glass-card {
+    @apply bg-surface-800/60 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply border-primary-500/30;
+    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold py-2.5 px-6 rounded-xl;
+    @apply hover:from-primary-500 hover:to-primary-400 transition-all duration-300;
+    @apply shadow-lg shadow-primary-600/25 hover:shadow-primary-500/40;
+    @apply active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply bg-surface-700/80 text-white font-medium py-2.5 px-6 rounded-xl border border-white/10;
+    @apply hover:bg-surface-700 hover:border-white/20 transition-all duration-300;
+    @apply active:scale-[0.98];
+  }
+
+  .btn-danger {
+    @apply bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold py-2.5 px-6 rounded-xl;
+    @apply hover:from-red-500 hover:to-red-400 transition-all duration-300;
+    @apply shadow-lg shadow-red-600/25;
+    @apply active:scale-[0.98];
+  }
+
+  .btn-success {
+    @apply bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold py-2.5 px-6 rounded-xl;
+    @apply hover:from-emerald-500 hover:to-emerald-400 transition-all duration-300;
+    @apply shadow-lg shadow-emerald-600/25;
+    @apply active:scale-[0.98];
+  }
+
+  .input-field {
+    @apply w-full bg-surface-800/80 border border-white/10 rounded-xl px-4 py-3 text-white;
+    @apply placeholder:text-gray-500 focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20;
+    @apply transition-all duration-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-critical { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
+  .badge-high { @apply bg-orange-500/20 text-orange-400 border border-orange-500/30; }
+  .badge-medium { @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .badge-low { @apply bg-green-500/20 text-green-400 border border-green-500/30; }
+
+  .badge-new { @apply bg-blue-500/20 text-blue-400 border border-blue-500/30; }
+  .badge-assigned { @apply bg-purple-500/20 text-purple-400 border border-purple-500/30; }
+  .badge-in-progress { @apply bg-indigo-500/20 text-indigo-400 border border-indigo-500/30; }
+  .badge-pending { @apply bg-amber-500/20 text-amber-400 border border-amber-500/30; }
+  .badge-resolved { @apply bg-emerald-500/20 text-emerald-400 border border-emerald-500/30; }
+  .badge-closed { @apply bg-gray-500/20 text-gray-400 border border-gray-500/30; }
+}
+
+/* ─── Animations ─────────────────────────────────────────── */
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa, #818cf8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
