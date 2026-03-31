@@ -25,7 +25,7 @@ class AIAnalysisResult(BaseModel):
 # ─── Ticket Schemas ──────────────────────────────────────────────────
 
 class TicketCreate(BaseModel):
-    title: str = Field(..., min_length=3, max_length=200)
+    title: Optional[str] = Field(None, max_length=200)
     description: str = Field(..., min_length=10)
     user_email: str = Field(..., max_length=150)
     attachment_url: Optional[str] = None
@@ -124,6 +124,15 @@ class EmployeeResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class ActiveTicketInfo(BaseModel):
+    """Info about an active ticket currently assigned to an employee."""
+    employee_id: int
+    employee_name: str
+    ticket_id: int
+    ticket_title: str
+    ticket_category: Optional[str]
 
 
 # ─── Reply Schema ────────────────────────────────────────────────────

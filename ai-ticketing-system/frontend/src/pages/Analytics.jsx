@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import { analyticsApi } from '../api.js';
 
-const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f43f5e', '#f97316', '#eab308', '#22c55e', '#06b6d4'];
+const COLORS = ['#22c55e', '#525252', '#737373', '#A1A1A1', '#d4d4d4', '#404040', '#9ca3af', '#171717'];
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
@@ -66,28 +66,28 @@ export default function Analytics() {
   }
 
   const statCards = overview ? [
-    { label: 'Total Tickets', value: overview.total_tickets, icon: BarChart3, color: 'from-primary-500 to-primary-700', shadow: 'shadow-primary-600/20' },
-    { label: 'Open', value: overview.open_tickets, icon: Clock, color: 'from-amber-500 to-amber-700', shadow: 'shadow-amber-600/20' },
-    { label: 'Resolved', value: overview.resolved_tickets, icon: CheckCircle2, color: 'from-emerald-500 to-emerald-700', shadow: 'shadow-emerald-600/20' },
-    { label: 'Auto-Resolved', value: overview.auto_resolved_tickets, icon: Zap, color: 'from-cyan-500 to-cyan-700', shadow: 'shadow-cyan-600/20' },
-    { label: 'Escalated', value: overview.escalated_tickets, icon: ArrowUpCircle, color: 'from-red-500 to-red-700', shadow: 'shadow-red-600/20' },
-    { label: 'AI Success Rate', value: `${overview.auto_resolution_success_rate}%`, icon: TrendingUp, color: 'from-violet-500 to-violet-700', shadow: 'shadow-violet-600/20' },
+    { label: 'Total Tickets', value: overview.total_tickets, icon: BarChart3, color: 'text-white bg-white/10' },
+    { label: 'Open', value: overview.open_tickets, icon: Clock, color: 'text-amber-400 bg-amber-400/10' },
+    { label: 'Resolved', value: overview.resolved_tickets, icon: CheckCircle2, color: 'text-[#22c55e] bg-[#22c55e]/10' },
+    { label: 'Auto-Resolved', value: overview.auto_resolved_tickets, icon: Zap, color: 'text-emerald-400 bg-emerald-400/10' },
+    { label: 'Escalated', value: overview.escalated_tickets, icon: ArrowUpCircle, color: 'text-red-400 bg-red-400/10' },
+    { label: 'AI Success Rate', value: `${overview.auto_resolution_success_rate}%`, icon: TrendingUp, color: 'text-neutral-400 bg-white/5' },
   ] : [];
 
   return (
     <div className="animate-fade-in">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold gradient-text mb-2">Analytics Dashboard</h1>
-        <p className="text-gray-400 text-sm">Real-time insights into your ticketing system performance.</p>
+        <h1 className="h2 mb-1">Analytics Dashboard</h1>
+        <p className="body-text">Real-time insights into your ticketing system performance.</p>
       </div>
 
       {/* Stat Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
         {statCards.map((card, i) => (
           <div key={card.label} className="glass-card p-4 animate-slide-up" style={{ animationDelay: `${i * 60}ms` }}>
-            <div className={`w-9 h-9 rounded-lg bg-gradient-to-br ${card.color} flex items-center justify-center mb-3 shadow-lg ${card.shadow}`}>
-              <card.icon className="w-4 h-4 text-white" />
+            <div className={`w-9 h-9 rounded-lg ${card.color} flex items-center justify-center mb-3`}>
+              <card.icon className="w-5 h-5" />
             </div>
             <p className="text-2xl font-bold text-white">{card.value}</p>
             <p className="text-xs text-gray-400 mt-1">{card.label}</p>
@@ -106,10 +106,15 @@ export default function Analytics() {
                 <XAxis dataKey="department" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={{ stroke: '#1e293b' }} />
                 <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={{ stroke: '#1e293b' }} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="ticket_count" name="Tickets" fill="#6366f1" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="ticket_count" name="Tickets" fill="#22c55e" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
-          ) : <p className="text-gray-500 text-sm text-center py-10">No data available</p>}
+          ) : (
+            <div className="flex flex-col items-center justify-center py-10 opacity-50">
+              <BarChart3 className="w-8 h-8 text-[#A1A1A1] mb-2" />
+              <p className="text-sm text-[#A1A1A1]">No data available</p>
+            </div>
+          )}
         </div>
 
         {/* Top Categories */}
@@ -124,7 +129,12 @@ export default function Analytics() {
                 <Tooltip content={<CustomTooltip />} />
               </PieChart>
             </ResponsiveContainer>
-          ) : <p className="text-gray-500 text-sm text-center py-10">No data available</p>}
+          ) : (
+            <div className="flex flex-col items-center justify-center py-10 opacity-50">
+              <BarChart3 className="w-8 h-8 text-[#A1A1A1] mb-2" />
+              <p className="text-sm text-[#A1A1A1]">No data available</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -139,10 +149,15 @@ export default function Analytics() {
                 <XAxis dataKey="department" tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={{ stroke: '#1e293b' }} />
                 <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={{ stroke: '#1e293b' }} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="avg_resolution_time" name="Avg Hours" fill="#8b5cf6" radius={[6, 6, 0, 0]} />
+                <Bar dataKey="avg_resolution_time" name="Avg Hours" fill="#525252" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
-          ) : <p className="text-gray-500 text-sm text-center py-10">No data available</p>}
+          ) : (
+            <div className="flex flex-col items-center justify-center py-10 opacity-50">
+              <BarChart3 className="w-8 h-8 text-[#A1A1A1] mb-2" />
+              <p className="text-sm text-[#A1A1A1]">No data available</p>
+            </div>
+          )}
         </div>
 
         {/* Severity Distribution */}
@@ -153,14 +168,19 @@ export default function Analytics() {
               <PieChart>
                 <Pie data={severityDist} dataKey="count" nameKey="severity" cx="50%" cy="50%" outerRadius={100} innerRadius={50} paddingAngle={4} label={({ severity, count }) => `${severity} (${count})`}>
                   <Cell fill="#ef4444" />
-                  <Cell fill="#f97316" />
-                  <Cell fill="#eab308" />
+                  <Cell fill="#facc15" />
+                  <Cell fill="#525252" />
                   <Cell fill="#22c55e" />
                 </Pie>
                 <Tooltip content={<CustomTooltip />} />
               </PieChart>
             </ResponsiveContainer>
-          ) : <p className="text-gray-500 text-sm text-center py-10">No data available</p>}
+          ) : (
+            <div className="flex flex-col items-center justify-center py-10 opacity-50">
+              <BarChart3 className="w-8 h-8 text-[#A1A1A1] mb-2" />
+              <p className="text-sm text-[#A1A1A1]">No data available</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -172,8 +192,8 @@ export default function Analytics() {
             <AreaChart data={trend} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
               <defs>
                 <linearGradient id="colorCreated" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#6366f1" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#525252" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#525252" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorResolved" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3} />
@@ -185,11 +205,16 @@ export default function Analytics() {
               <YAxis tick={{ fill: '#94a3b8', fontSize: 11 }} axisLine={{ stroke: '#1e293b' }} />
               <Tooltip content={<CustomTooltip />} />
               <Legend />
-              <Area type="monotone" dataKey="created" name="Created" stroke="#6366f1" fillOpacity={1} fill="url(#colorCreated)" />
+              <Area type="monotone" dataKey="created" name="Created" stroke="#525252" fillOpacity={1} fill="url(#colorCreated)" />
               <Area type="monotone" dataKey="resolved" name="Resolved" stroke="#22c55e" fillOpacity={1} fill="url(#colorResolved)" />
             </AreaChart>
           </ResponsiveContainer>
-        ) : <p className="text-gray-500 text-sm text-center py-10">No trend data (submit tickets to see trends)</p>}
+        ) : (
+          <div className="flex flex-col items-center justify-center py-10 opacity-50">
+            <TrendingUp className="w-8 h-8 text-[#A1A1A1] mb-2" />
+            <p className="text-sm text-[#A1A1A1]">No trend data (submit tickets to see trends)</p>
+          </div>
+        )}
       </div>
 
       {/* Employee Performance Table */}
@@ -228,7 +253,12 @@ export default function Analytics() {
               </tbody>
             </table>
           </div>
-        ) : <p className="text-gray-500 text-sm text-center py-10">No employee data</p>}
+        ) : (
+          <div className="flex flex-col items-center justify-center py-10 opacity-50">
+            <Users className="w-8 h-8 text-[#A1A1A1] mb-2" />
+            <p className="text-sm text-[#A1A1A1]">No employee data available</p>
+          </div>
+        )}
       </div>
     </div>
   );

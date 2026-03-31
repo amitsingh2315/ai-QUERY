@@ -98,10 +98,10 @@ export default function MyTickets() {
 
   const getStatusClass = (status) => {
     const map = {
-      'New': 'badge-new', 'Assigned': 'badge-assigned', 'In Progress': 'badge-in-progress',
-      'Pending Info': 'badge-pending', 'Resolved': 'badge-resolved', 'Closed': 'badge-closed',
+      'New': 'badge-status-open', 'Assigned': 'badge-status-progress', 'In Progress': 'badge-status-progress',
+      'Pending Info': 'badge-status-progress', 'Resolved': 'badge-status-resolved', 'Closed': 'badge-status-closed',
     };
-    return `badge ${map[status] || 'badge-new'}`;
+    return `badge ${map[status] || 'badge-status-open'}`;
   };
 
   const formatDateExact = (dateStr) => {
@@ -122,9 +122,9 @@ export default function MyTickets() {
   return (
     <div className="animate-fade-in">
       {/* Header */}
-      <div className="mb-8 p-6 glass-card border-primary-500/20 shadow-lg shadow-primary-500/10">
-        <h1 className="text-3xl font-bold gradient-text mb-2 text-center md:text-left">User Portal</h1>
-        <p className="text-gray-400 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+      <div className="mb-8 p-6 glass-card">
+        <h1 className="h2 mb-2 text-center md:text-left text-white">My Tickets</h1>
+        <p className="body-text text-center md:text-left flex items-center justify-center md:justify-start gap-2 text-sm">
           <Mail className="w-4 h-4" /> Logged in as: <span className="text-white font-medium">{submittedEmail || 'Not logged in'}</span>
         </p>
       </div>
@@ -148,21 +148,21 @@ export default function MyTickets() {
 
       {searched && tickets.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className={`glass-card p-5 bg-gradient-to-br from-primary-600/10 to-transparent border-primary-500/20`}>
-              <p className="text-xs text-gray-400 mb-1">Total Active</p>
+            <div className={`glass-card p-5`}>
+              <p className="text-xs text-neutral-500 mb-1">Total Active</p>
               <p className="text-3xl font-bold text-white">{stats.total}</p>
             </div>
-            <div className={`glass-card p-5 bg-gradient-to-br from-emerald-600/10 to-transparent border-emerald-500/20`}>
-              <p className="text-xs text-gray-400 mb-1">Resolved</p>
-              <p className="text-3xl font-bold text-emerald-400">{stats.resolved}</p>
+            <div className={`glass-card p-5`}>
+              <p className="text-xs text-neutral-500 mb-1">Resolved</p>
+              <p className="text-3xl font-bold text-blue-400">{stats.resolved}</p>
             </div>
-            <div className={`glass-card p-5 bg-gradient-to-br from-blue-600/10 to-transparent border-blue-500/20`}>
-              <p className="text-xs text-gray-400 mb-1">In Progress</p>
-              <p className="text-3xl font-bold text-blue-400">{stats.inProgress}</p>
+            <div className={`glass-card p-5`}>
+              <p className="text-xs text-neutral-500 mb-1">In Progress</p>
+              <p className="text-3xl font-bold text-yellow-400">{stats.inProgress}</p>
             </div>
-            <div className={`glass-card p-5 bg-gradient-to-br from-amber-600/10 to-transparent border-amber-500/20`}>
-              <p className="text-xs text-gray-400 mb-1">Pending action</p>
-              <p className="text-3xl font-bold text-amber-400">{stats.pending}</p>
+            <div className={`glass-card p-5`}>
+              <p className="text-xs text-neutral-500 mb-1">Pending action</p>
+              <p className="text-3xl font-bold text-neutral-400">{stats.pending}</p>
             </div>
         </div>
       )}

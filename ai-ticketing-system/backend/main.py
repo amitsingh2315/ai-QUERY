@@ -3,6 +3,9 @@ FastAPI Application Entry Point
 Advanced AI Ticketing System — Main Server
 """
 
+from dotenv import load_dotenv
+load_dotenv()  # Load .env file (GROQ_API_KEY, etc.)
+
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -86,7 +89,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

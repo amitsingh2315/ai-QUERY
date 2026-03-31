@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment Variables — NEVER commit these
+backend/.env
+.env
+
+# SQLite Database — ephemeral, don't commit
+backend/ticketing.db
+*.db
+*.sqlite3
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

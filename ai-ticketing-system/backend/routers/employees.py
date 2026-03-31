@@ -5,11 +5,12 @@ Employee directory CRUD and management.
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import desc
 from typing import List, Optional
 
 from database import get_db
-from models import Employee
-from schemas import EmployeeCreate, EmployeeUpdate, EmployeeResponse
+from models import Employee, Ticket
+from schemas import EmployeeCreate, EmployeeUpdate, EmployeeResponse, ActiveTicketInfo
 
 router = APIRouter(prefix="/api/employees", tags=["Employees"])
 
@@ -30,6 +31,38 @@ def list_employees(
     if availability:
         query = query.filter(Employee.availability == availability)
     return query.order_by(Employee.name).all()
+
+
+@router.get("/active-tickets", response_model=List[ActiveTicketInfo])
+def get_active_tickets(db: Session = Depends(get_db)):
+    """
+    Return active ticket assignments for all employees.
+    Active = status in (Assigned, In Progress, Pending Info).
+    Returns the most recent active ticket per employee.
+    """
+    active_statuses = ["Assigned", "In Progress", "Pending Info"]
+    rows = (
+        db.query(Ticket, Employee)
+        .join(Employee, Ticket.assignee_id == Employee.id)
+        .filter(Ticket.status.in_(active_statuses))
+        .order_by(desc(Ticket.created_at))
+        .all()
+    )
+
+    results = []
+    seen_employees = set()
+    for ticket, employee in rows:
+        if employee.id not in seen_employees:
+            seen_employees.add(employee.id)
+            results.append(ActiveTicketInfo(
+                employee_id=employee.id,
+                employee_name=employee.name,
+                ticket_id=ticket.id,
+                ticket_title=ticket.title,
+                ticket_category=ticket.category,
+            ))
+
+    return results
 
 
 @router.get("/{employee_id}", response_model=EmployeeResponse)

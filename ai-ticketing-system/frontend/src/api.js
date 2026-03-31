@@ -1,8 +1,15 @@
 /**
  * API Service — Centralized HTTP client for all backend calls.
+ *
+ * In production (Render), VITE_API_URL is set to the backend service URL.
+ * In local development, requests go through the Vite dev proxy to localhost:8000.
  */
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+let BASE_URL = '/api';
+if (import.meta.env.VITE_API_URL) {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  BASE_URL = apiUrl.startsWith('http') ? `${apiUrl}/api` : `https://${apiUrl}/api`;
+}
 
 async function request(url, options = {}) {
   const config = {
@@ -59,6 +66,7 @@ export const employeeApi = {
   update: (id, data) => request(`/employees/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deactivate: (id) => request(`/employees/${id}`, { method: 'DELETE' }),
   departments: () => request('/employees/departments/list'),
+  activeTickets: () => request('/employees/active-tickets'),
 };
 
 // ─── Analytics ───────────────────────────────────────────

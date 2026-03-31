@@ -12,11 +12,19 @@
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e1b4b 100%);
+  background: #0f0f0f;
   min-height: 100vh;
-  color: #e2e8f0;
+  color: #FFFFFF;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+h1, .h1 { font-size: 40px; font-weight: 600; line-height: 1.2; }
+h2, .h2 { font-size: 28px; font-weight: 600; line-height: 1.3; }
+h3, .h3 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+p, .body-text { font-size: 16px; color: #A1A1A1; }
+small, .small-text { font-size: 14px; color: #A1A1A1; }
 
 /* ─── Scrollbar Styling ──────────────────────────────────── */
 
@@ -24,100 +32,232 @@ body {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #0f0f0f;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #4f46e5;
+  background: #333;
   border-radius: 3px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1;
+  background: #555;
 }
 
-/* ─── Glass Card Effect ──────────────────────────────────── */
+/* ─── Component Layer ────────────────────────────────────── */
 
 @layer components {
+
+  /* Cards */
   .glass-card {
-    @apply bg-surface-800/60 backdrop-blur-xl border border-white/10 rounded-2xl;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    background: #171717;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 24px; /* Using uniform spacing standard */
   }
 
   .glass-card-hover {
-    @apply glass-card transition-all duration-300;
+    @apply glass-card cursor-pointer;
+    padding: 16px 24px;
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
 
   .glass-card-hover:hover {
-    @apply border-primary-500/30;
-    box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    background: #202020;
+    border-color: #888888;
     transform: translateY(-2px);
   }
 
+  /* Buttons */
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold py-2.5 px-6 rounded-xl;
-    @apply hover:from-primary-500 hover:to-primary-400 transition-all duration-300;
-    @apply shadow-lg shadow-primary-600/25 hover:shadow-primary-500/40;
-    @apply active:scale-[0.98];
+    @apply bg-white text-black font-semibold rounded-lg flex items-center justify-center gap-2;
+    padding: 8px 16px;
+    transition: background 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: #e5e5e5;
+  }
+  .btn-primary:active {
+    transform: scale(0.98);
   }
 
   .btn-secondary {
-    @apply bg-surface-700/80 text-white font-medium py-2.5 px-6 rounded-xl border border-white/10;
-    @apply hover:bg-surface-700 hover:border-white/20 transition-all duration-300;
-    @apply active:scale-[0.98];
+    @apply bg-transparent text-[#A1A1A1] font-medium rounded-lg flex items-center justify-center gap-2;
+    border: 1px solid #2a2a2a;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+  }
+  .btn-secondary:hover {
+    @apply border-[#3a3a3a] text-white bg-white/5;
+  }
+  .btn-secondary:active {
+    transform: scale(0.98);
   }
 
   .btn-danger {
-    @apply bg-gradient-to-r from-red-600 to-red-500 text-white font-semibold py-2.5 px-6 rounded-xl;
-    @apply hover:from-red-500 hover:to-red-400 transition-all duration-300;
-    @apply shadow-lg shadow-red-600/25;
-    @apply active:scale-[0.98];
+    @apply bg-red-600 text-white font-semibold rounded-lg;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+  }
+  .btn-danger:hover {
+    @apply bg-red-500;
   }
 
   .btn-success {
-    @apply bg-gradient-to-r from-emerald-600 to-emerald-500 text-white font-semibold py-2.5 px-6 rounded-xl;
-    @apply hover:from-emerald-500 hover:to-emerald-400 transition-all duration-300;
-    @apply shadow-lg shadow-emerald-600/25;
-    @apply active:scale-[0.98];
+    @apply bg-[#22c55e] text-white font-semibold rounded-lg;
+    padding: 8px 16px;
+    transition: all 0.2s ease;
+  }
+  .btn-success:hover {
+    @apply bg-[#1fb154];
   }
 
+  /* Inputs */
   .input-field {
-    @apply w-full bg-surface-800/80 border border-white/10 rounded-xl px-4 py-3 text-white;
-    @apply placeholder:text-gray-500 focus:outline-none focus:border-primary-500/50 focus:ring-2 focus:ring-primary-500/20;
-    @apply transition-all duration-300;
+    @apply w-full bg-[#0f0f0f] border border-[#2a2a2a] rounded-lg text-white;
+    padding: 16px;
+    transition: all 0.2s ease;
+  }
+  .input-field::placeholder {
+    color: #A1A1A1;
+  }
+  .input-field:focus {
+    outline: none;
+    border-color: #22c55e;
   }
 
+  /* Badges */
   .badge {
-    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold;
+    @apply inline-flex items-center px-2 py-1 rounded text-xs font-semibold;
   }
 
-  .badge-critical { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
-  .badge-high { @apply bg-orange-500/20 text-orange-400 border border-orange-500/30; }
-  .badge-medium { @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
-  .badge-low { @apply bg-green-500/20 text-green-400 border border-green-500/30; }
+  /* Status Colors */
+  .badge-status-open {
+    @apply bg-[#22c55e]/10 text-[#22c55e] border border-[#22c55e]/20;
+  }
+  .badge-status-progress {
+    @apply bg-yellow-400/10 text-yellow-400 border border-yellow-400/20;
+  }
+  .badge-status-resolved {
+    @apply bg-blue-400/10 text-blue-400 border border-blue-400/20;
+  }
+  .badge-status-closed {
+    @apply bg-gray-500/10 text-gray-400 border border-gray-500/20;
+  }
 
-  .badge-new { @apply bg-blue-500/20 text-blue-400 border border-blue-500/30; }
-  .badge-assigned { @apply bg-purple-500/20 text-purple-400 border border-purple-500/30; }
-  .badge-in-progress { @apply bg-indigo-500/20 text-indigo-400 border border-indigo-500/30; }
-  .badge-pending { @apply bg-amber-500/20 text-amber-400 border border-amber-500/30; }
-  .badge-resolved { @apply bg-emerald-500/20 text-emerald-400 border border-emerald-500/30; }
-  .badge-closed { @apply bg-gray-500/20 text-gray-400 border border-gray-500/30; }
+  /* Severity Colors */
+  .badge-critical { @apply bg-red-500/10 text-red-400 border border-red-500/20; }
+  .badge-high     { @apply bg-orange-500/10 text-orange-400 border border-orange-500/20; }
+  .badge-medium   { @apply bg-amber-500/10 text-amber-400 border border-amber-500/20; }
+  .badge-low      { @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20; }
+}
+
+/* ─── Selection ──────────────────────────────────────────── */
+
+::selection {
+  background: rgba(34, 197, 94, 0.3);
+  color: #fff;
+}
+
+/* ─── Chat Bubbles ───────────────────────────────────────── */
+
+/* Agent/System Left */
+.chat-bubble-agent {
+  max-width: 80%;
+  background: #171717;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px 12px 12px 4px;
+  padding: 16px;
+  color: #FFFFFF;
+  animation: chatSlideUp 0.25s ease-out;
+}
+
+/* User Right */
+.chat-bubble-user {
+  max-width: 80%;
+  background: #2a2a2a;
+  border: 1px solid #3a3a3a;
+  border-radius: 12px 12px 4px 12px;
+  padding: 16px;
+  color: #FFFFFF;
+  animation: chatSlideUp 0.25s ease-out;
+  margin-left: auto;
+}
+
+.chat-bubble-system {
+  background: transparent;
+  color: #A1A1A1;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px 16px;
+  display: block;
+  width: 100%;
+}
+
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #171717;
+  border: 1px solid #2a2a2a;
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+
+/* ─── Satisfaction Buttons ───────────────────────────────── */
+
+.satisfaction-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.satisfaction-btn-yes {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.25);
+  color: #22c55e;
+}
+.satisfaction-btn-yes:hover {
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.satisfaction-btn-no {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+.satisfaction-btn-no:hover {
+  background: rgba(239, 68, 68, 0.15);
 }
 
 /* ─── Animations ─────────────────────────────────────────── */
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+@keyframes chatSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa, #818cf8);
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 4s ease infinite;
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }

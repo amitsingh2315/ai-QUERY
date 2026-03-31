@@ -149,13 +149,26 @@ def _send_notification(db: Session, ticket_id: int, email: str, subject: str,
 async def create_ticket(ticket_data: TicketCreate, db: Session = Depends(get_db)):
     """
     Submit a new ticket. Flow:
-    1. Create ticket record
+    1. Create ticket record (auto-generate title if not provided)
     2. Run AI analysis
     3. Either auto-resolve or route to department + assign employee
     """
+    # Auto-generate title from description if not provided
+    title = ticket_data.title
+    if not title or not title.strip():
+        stop_words = {"i", "my", "me", "the", "a", "an", "is", "am", "are", "was", "were",
+                       "to", "and", "but", "or", "in", "on", "at", "for", "of", "with",
+                       "it", "this", "that", "do", "did", "not", "can", "cannot", "have",
+                       "has", "had"}
+        words = ticket_data.description.split()
+        meaningful = [w for w in words if w.lower().strip(".,!?;:") not in stop_words]
+        title_words = meaningful[:8] if len(meaningful) >= 6 else words[:8]
+        title = " ".join(title_words).strip(".,!?;:")
+        title = title[:200].title() if title else "Support Request"
+
     # Step 1: Create the ticket
     ticket = Ticket(
-        title=ticket_data.title,
+        title=title,
         description=ticket_data.description,
         user_email=ticket_data.user_email,
         attachment_url=ticket_data.attachment_url,
@@ -168,7 +181,7 @@ async def create_ticket(ticket_data: TicketCreate, db: Session = Depends(get_db)
 
     # Step 2: AI Analysis
     ai_result = await analyze_ticket(
-        ticket_data.title, ticket_data.description, ticket_data.user_email
+        title, ticket_data.description, ticket_data.user_email
     )
 
     # Store AI analysis on the ticket
