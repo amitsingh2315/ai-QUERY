@@ -19,7 +19,7 @@ Frontend (React) → API (FastAPI) → AI Analysis Layer → Routing Engine → 
 | Real-time | WebSockets |
 
 ## Login
-<img width="877" height="1208" alt="image" src="https://github.com/user-attachments/assets/73211743-dbb5-46fd-8b92-194c2a90b8a6" />
+<img width="500" height="900" alt="image" src="https://github.com/user-attachments/assets/73211743-dbb5-46fd-8b92-194c2a90b8a6" />
 
 
 ## Modules
