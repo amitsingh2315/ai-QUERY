@@ -18,6 +18,10 @@ Frontend (React) → API (FastAPI) → AI Analysis Layer → Routing Engine → 
 | AI/LLM | Groq(free cost) |
 | Real-time | WebSockets |
 
+## Login
+<img width="877" height="1208" alt="image" src="https://github.com/user-attachments/assets/73211743-dbb5-46fd-8b92-194c2a90b8a6" />
+
+
 ## Modules
 
 1. **Ticket Intake & AI Analysis** — Submit tickets, AI returns structured category/severity/routing
