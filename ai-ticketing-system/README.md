@@ -15,7 +15,7 @@ Frontend (React) → API (FastAPI) → AI Analysis Layer → Routing Engine → 
 | Backend | Python, FastAPI, SQLAlchemy |
 | Database | SQLite |
 | Frontend | React 18, TailwindCSS 3, Recharts |
-| AI | OpenAI / Claude API (mock fallback included) |
+| AI/LLM | Groq(free cost) |
 | Real-time | WebSockets |
 
 ## Modules
