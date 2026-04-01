@@ -157,3 +157,79 @@ ai-ticketing-system/
 │           └── Analytics.jsx
 └── README.md
 ```
+
+
+## 🚀 Features
+
+### 1️⃣ AI Ticket Analysis
+When a user submits a ticket, the AI reads the issue and identifies:
+
+- category  
+- severity  
+- suggested response  
+
+### 2️⃣ Auto Ticket Routing
+The system automatically routes tickets to the correct department such as:
+
+- Engineering  
+- DevOps  
+- HR  
+- Finance  
+
+### 3️⃣ Real-time Chat System
+Users and support agents can communicate through a live chat system without refreshing the page.
+
+### 4️⃣ Employee Directory
+Admins can manage employees and view:
+
+- ticket workload  
+- department  
+- availability  
+
+### 5️⃣ Ticket Lifecycle Management
+Tickets move through different states:
+
+- Open  
+- In Progress  
+- Closed  
+
+### 6️⃣ Analytics Dashboard
+The system provides analytics including:
+
+- department workload  
+- ticket categories  
+- performance metrics  
+
+
+---
+
+## ⚠️ Known Limitations
+
+Currently the AI system does not learn automatically from previously solved tickets. When a user marks a solution as satisfactory, the system does not store that knowledge to improve future responses.
+
+Additionally, the project uses SQLite which is suitable for development and demo purposes but may not scale well for large production systems.
+
+AI responses may also require human verification for complex technical issues.
+
+
+---
+
+## 🔮 Future Improvements
+
+With more development time, the system could be improved by:
+
+- Adding a vector database so the AI can learn from previously solved tickets  
+- Implementing authentication and role-based access control  
+- Using PostgreSQL instead of SQLite for better scalability  
+- Improving analytics to track employee performance and resolution time
+
+
+### USER DASHBOARD
+<img width="1800" height="1000" alt="image" src="https://github.com/user-attachments/assets/c1783438-a387-4829-9498-7af4768fdced" />
+
+
+
+
+## ADMIN PORTAL
+<img width="2000" height="1000" alt="image" src="https://github.com/user-attachments/assets/f4b4e138-3d15-46b0-9320-a913344d625a" />
+
