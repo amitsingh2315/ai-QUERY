@@ -32,12 +32,17 @@ Frontend (React) → API (FastAPI) → AI Analysis Layer → Routing Engine → 
 
 4. **Intelligent Department Routing** — Rules-based routing to Engineering, DevOps, HR, Finance, etc.
 
+
 5. **Employee Directory & Assignee Suggestion** — Skill-based matching considering load & availability
 <img width="400" height="350" alt="image" src="https://github.com/user-attachments/assets/4a12e923-d59b-463a-967c-bcc652c4e718" />
+<img width="1000" height="700" alt="image" src="https://github.com/user-attachments/assets/6ed46927-e18c-4d67-ae8c-a8d806f4b218" />
+
 
 
 6. **Ticket Lifecycle Management** — Status tracking, notes, escalation, timeline, notifications
 <img width="1000" height="150" alt="image" src="https://github.com/user-attachments/assets/b4e420bf-c92e-4a52-905d-b075e83fad87" />
+<img width="350" height="450" alt="image" src="https://github.com/user-attachments/assets/9d764f2e-44a0-4465-b189-5d88ecac4f97" />
+
 
 7. **Analytics Dashboard** — Charts (Recharts): department load, categories, trends, performance
 <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/a538e275-6534-472d-9f12-402662606025" />
