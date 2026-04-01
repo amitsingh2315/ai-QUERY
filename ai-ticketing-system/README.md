@@ -25,11 +25,18 @@ Frontend (React) → API (FastAPI) → AI Analysis Layer → Routing Engine → 
 ## Modules
 
 1. **Ticket Intake & AI Analysis** — Submit tickets, AI returns structured category/severity/routing
-2. **Auto-Resolution Engine** — AI auto-resolves common tickets (password resets, FAQs, policies)
-3. **Intelligent Department Routing** — Rules-based routing to Engineering, DevOps, HR, Finance, etc.
-4. **Employee Directory & Assignee Suggestion** — Skill-based matching considering load & availability
-5. **Ticket Lifecycle Management** — Status tracking, notes, escalation, timeline, notifications
-6. **Analytics Dashboard** — Charts (Recharts): department load, categories, trends, performance
+<img width="1800" height="800" alt="image" src="https://github.com/user-attachments/assets/886c7ee7-b181-4e05-be1f-872876fea964" />
+
+3. **Auto-Resolution Engine** — AI auto-resolves common tickets (password resets, FAQs, policies)
+<img width="400" height="400" alt="image" src="https://github.com/user-attachments/assets/cbcf8b69-b60b-4006-9da8-88fa5e5641f3" />
+
+4. **Intelligent Department Routing** — Rules-based routing to Engineering, DevOps, HR, Finance, etc.
+
+5. **Employee Directory & Assignee Suggestion** — Skill-based matching considering load & availability
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/098d6b6f-5c3f-4a3b-8fe5-5715fa879a28" />
+
+6. **Ticket Lifecycle Management** — Status tracking, notes, escalation, timeline, notifications
+7. **Analytics Dashboard** — Charts (Recharts): department load, categories, trends, performance
 
 ## Quick Start
 
