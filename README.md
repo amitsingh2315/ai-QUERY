@@ -1,5 +1,9 @@
 # 🤖 Advanced AI Ticketing System
 
+# 🌐 Live Link
+
+👉 [Open Live Project](https://ai-ticketing-frontend.onrender.com/)
+
 A smart internal ticketing platform where AI reads incoming tickets, analyzes them using LLM, auto-resolves when possible, or intelligently routes them to the correct department and employee.
 
 ## Architecture
