@@ -131,7 +131,7 @@ The system includes 10 pre-built test ticket scenarios in `backend/seed_data.py`
 
 
 
-## Project Structure
+## Project Structure/
 
 ```
 ai-ticketing-system/
